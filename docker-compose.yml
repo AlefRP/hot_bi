@@ -11,7 +11,7 @@ services:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: dw_courses
     ports:
-      - "3307:3306"  # Mapeando a porta 3307 do host para a porta 3307 do container
+      - "3307:3306"  # Mapeando a porta 3307 do host para a porta 3306 do container
     volumes:
       - mysql_data:/var/lib/mysql
       - ./docker/init/mysql:/docker-entrypoint-initdb.d
