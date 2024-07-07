@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  mysql:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+      target: mysql
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: dw_courses
+    ports:
+      - "3307:3307"  # Mapeando a porta 3307 do host para a porta 3307 do container
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/init/mysql:/docker-entrypoint-initdb.d
+
+  postgresql:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+      target: postgresql
+    container_name: postgresql
+    environment:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: courses
+    ports:
+      - "5435:5435"  # Mapeando a porta 5435 do host para a porta 5435 do container
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+      - ./docker/init/postgresql:/docker-entrypoint-initdb.d
+
+  sqlserver:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+      target: sqlserver
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD: 1234
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1434:1434"  # Mapeando a porta 1434 do host para a porta 1434 do container
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+      - ./docker/init/sqlserver:/docker-entrypoint-initdb.d
+
+  python-scripts:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: python-scripts
+    container_name: python-scripts
+    volumes:
+      - ./scripts:/scripts
+      - ./data:/data
+    depends_on:
+      - mysql
+      - postgresql
+      - sqlserver
+    entrypoint: ["/scripts/entrypoint.sh"]
+
+volumes:
+  mysql_data:
+  postgresql_data:
+  sqlserver_data:
