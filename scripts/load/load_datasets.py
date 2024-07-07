@@ -2,35 +2,15 @@ import os
 import pandas as pd
 from sqlalchemy import create_engine
 import logging
-from configparser import ConfigParser
 
-# Caminho absoluto para o arquivo de configuração
-config_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'configs', 'config.ini'))
-
-# Carrega as configurações do arquivo .ini desativando a interpolação padrão
-config = ConfigParser(interpolation=None)
-config.read(config_path)
-
-# Verificar se a seção [logging] está no arquivo de configuração
-if 'logging' not in config:
-    raise KeyError("A seção 'logging' não foi encontrada no arquivo de configuração.")
-
-# Criar o diretório de logs se não existir
-log_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', config['logging']['filename']))
-log_dir = os.path.dirname(log_file_path)
-if not os.path.exists(log_dir):
-    os.makedirs(log_dir)
-
-# Configuração do log
-logging.basicConfig(filename=log_file_path, 
-                    level=config['logging']['level'].upper(), 
-                    format=config['logging']['format'])
+# Configuração de logging para saída padrão
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
 
 logger.info("Iniciando o carregamento dos dados")
 
 # Caminho para o arquivo CSV
-csv_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'raw', 'courses', 'udemy_courses.csv'))
+csv_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', 'data', 'raw', 'courses', 'udemy_courses.csv'))
 
 # Verificar se o arquivo CSV existe
 if not os.path.exists(csv_file_path):
@@ -41,11 +21,11 @@ df = pd.read_csv(csv_file_path)
 logger.info('Arquivo CSV carregado com sucesso')
 
 # Configuração da conexão com o PostgreSQL
-db_username = config['database']['username']
-db_password = config['database']['password']
-db_host = config['database']['host']
-db_port = config['database']['port']
-db_name = config['database']['database']
+db_username = 'postgres'
+db_password = '1234'
+db_host = 'postgresql'  # Nome do serviço definido no docker-compose.yml
+db_port = '5432'
+db_name = 'courses'
 
 # Criar a string de conexão
 connection_string = f'postgresql://{db_username}:{db_password}@{db_host}:{db_port}/{db_name}'

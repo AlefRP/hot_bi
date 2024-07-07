@@ -2,8 +2,7 @@
 
 # Verifique a disponibilidade dos serviços
 /wait-for-it.sh mysql:3306 --timeout=60 --strict -- echo "MySQL está disponível"
-/wait-for-it.sh postgresql:5435 --timeout=60 --strict -- echo "PostgreSQL está disponível"
-/wait-for-it.sh sqlserver:1433 --timeout=60 --strict -- echo "SQL Server está disponível"
+/wait-for-it.sh postgresql:5432 --timeout=60 --strict -- echo "PostgreSQL está disponível"
 
 # Execute o primeiro script para baixar os datasets
 python scripts/extract/download_datasets.py
