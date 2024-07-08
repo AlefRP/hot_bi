@@ -24,5 +24,8 @@ COPY ../scripts /scripts
 COPY ../data /data
 COPY ../configs /configs
 
-# Comando de entrada
+# Configurar permissões e ponto de entrada
+RUN chmod +x /scripts/entrypoint.sh
+
+# Comando de entrada para iniciar o workflow
 ENTRYPOINT ["/scripts/entrypoint.sh"]
