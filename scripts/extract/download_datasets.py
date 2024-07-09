@@ -38,7 +38,7 @@ datasets = {
     "courses": "andrewmvd/udemy-courses"
 }
 
-# Baixar todos os datasets
+# Baixar o dataset
 for name, dataset in datasets.items():
     download_kaggle_dataset(dataset, name)
 
