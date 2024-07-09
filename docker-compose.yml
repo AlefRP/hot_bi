@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   mysql:
     build:
@@ -44,6 +42,25 @@ services:
       - mysql
       - postgresql
     entrypoint: ["/scripts/entrypoint.sh"]
+  
+  apache-hop:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: apache-hop
+    container_name: apache-hop
+    environment:
+      HOP_LOG_LEVEL: Basic
+      HOP_FILE_PATH: '/files/dw_hop/dw_courses/dw_work.hwf'
+      HOP_PROJECT_NAME: 'dw_hop'
+      HOP_PROJECT_FOLDER: '/files/dw_hop'
+      HOP_RUN_CONFIG: 'local'
+    depends_on:
+      - mysql
+      - postgresql
+      - python-scripts
+    volumes:
+      - ./scripts/dw_hop:/files/dw_hop
 
 volumes:
   mysql_data:

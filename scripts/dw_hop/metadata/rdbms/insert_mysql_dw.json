@@ -4,10 +4,10 @@
       "databaseName": "dw_courses",
       "pluginId": "MYSQL",
       "accessType": 0,
-      "hostname": "localhost",
+      "hostname": "mysql",
       "password": "Encrypted 2be98afc86aa7f2e4cb79ce108fc0fc8e",
       "pluginName": "MySQL",
-      "port": "3307",
+      "port": "3306",
       "driverClassName": "Mysql 8+",
       "attributes": {
         "SUPPORTS_TIMESTAMP_DATA_TYPE": "N",

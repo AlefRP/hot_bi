@@ -33,3 +33,5 @@ CREATE TABLE IF NOT EXISTS fact_courses (
     FOREIGN KEY (subject_key) REFERENCES dim_subject(subject_key),
     FOREIGN KEY (paid_key) REFERENCES dim_paid(paid_key)
 );
+
+CREATE INDEX idx_published_date ON fact_courses(published_date);

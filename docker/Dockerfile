@@ -29,3 +29,8 @@ RUN chmod +x /scripts/entrypoint.sh
 
 # Comando de entrada para iniciar o workflow
 ENTRYPOINT ["/scripts/entrypoint.sh"]
+
+FROM apache/hop:2.9.0 as apache-hop
+
+# Adiciona o driver MySQL ao container
+COPY ../scripts/dw_hop/mysqlplugin/mysql-connector-j-8.0.33.jar /opt/hop/plugins/databases/mysql/lib/mysql-connector-java.jar

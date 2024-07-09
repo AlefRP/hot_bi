@@ -2,35 +2,29 @@
 
 ## Requisitos
 
-Antes de executar o script `run.bat`, certifique-se de que os seguintes pré-requisitos estejam atendidos:
+Antes de executar o projeto, certifique-se de que os seguintes pré-requisitos estejam atendidos:
 
-1. **Docker**:
-   - Certifique-se de que o Docker esteja instalado e configurado corretamente em sua máquina.
+1. **Docker e Docker Compose**:
+   - Certifique-se de que o Docker e o Docker Compose estejam instalados e configurados corretamente em sua máquina.
    - Para instalar o Docker, siga as instruções disponíveis em [Docker Documentation](https://docs.docker.com/get-docker/).
 
-2. **Apache Hop**:
-   - O Apache Hop deve estar instalado na sua máquina.
-   - Baixe e instale o Apache Hop a partir do site oficial: [Apache Hop](https://hop.apache.org/download/).
-   - Certifique-se de que o caminho para `hop-run.bat` esteja corretamente configurado no script `run.bat`.
-
-3. **Driver do MySQL**:
-   - O driver do MySQL deve estar disponível no Apache Hop.
-   - Para adicionar o driver do MySQL, siga as instruções na documentação do Apache Hop.
-
-## Executando o Script
+## Executando o Projeto
 
 1. Clone este repositório ou baixe os arquivos necessários.
 
-2. Navegue até o diretório onde o script `run.bat` está localizado.
+2. Navegue até o diretório onde o arquivo `docker-compose.yml` está localizado.
 
-3. Execute o script `run.bat`:
+3. Execute o comando a seguir para iniciar os containers Docker:
 
    ```sh
-   run.bat
+   docker-compose up -d
    ```
 
-4. O script realizará as seguintes ações:
+4. O comando docker-compose up -d realizará as seguintes ações:
 
-   - Iniciará os containers Docker usando docker-compose.
-   - Esperará 15 segundos para garantir que os containers estejam totalmente operacionais.
-   - Executará o Apache Hop com a configuração especificada.
+   - Iniciará os containers Docker definidos no arquivo docker-compose.yml.
+   - Esperará até que todos os containers estejam totalmente operacionais.
+
+## Verificando o funcionamento
+
+Cheque os dados na porta 3307 do MySQL e 5435 do PostgreSQL.
