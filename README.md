@@ -22,7 +22,7 @@ O pipeline foi construído utilizando:
 
 Além do pipeline, foi desenvolvido um painel no **Power BI** simulando indicadores relevantes, como receita total, vendas, ticket médio, entre outros.
 
-![Exemplo de Painel no Power BI](docs\imgs\power_bi.png)
+![Exemplo de Painel no Power BI](docs/imgs/power_bi.png)
 
 ---
 
