@@ -8,7 +8,7 @@ Além disso, foi criado um painel simulado utilizando o **Power BI**, onde explo
 
 ## Fluxo do Projeto
 
-![Pipeline de Integração](docs\imgs\apresentacao.png)
+![Pipeline de Integração](docs/imgs/apresentacao.png)
 
 O pipeline foi construído utilizando:
 
